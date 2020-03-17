@@ -1,5 +1,5 @@
 from .base_page import BasePage
-from .locators import ProductPageLocators
+from .locators import ProductPageLocators, BasePageLocators
 
 
 class ProductPage(BasePage):
@@ -21,9 +21,9 @@ class ProductPage(BasePage):
             *ProductPageLocators.PRICE_BASKET).text, "cost doesn't match"
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(), \
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Success message is presented, but should not be"
 
     def should_until_not_be_success_message(self):
-        assert self.is_disappeared(), \
+        assert self.is_disappeared(*BasePageLocators.BASKET_NOT_EMPTY), \
             "Success message is disappeared, but should be"
